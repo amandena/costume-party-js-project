@@ -3,6 +3,10 @@ class CostumePartiesController < ApplicationController
 
   def index
     @parties = CostumeParty.all
+    respond_to do |f|
+      f.html
+      f.json {render json: @parties}
+    end
   end
 
   def show
