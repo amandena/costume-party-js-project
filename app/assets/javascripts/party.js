@@ -5,6 +5,7 @@ $(document).ready(function(){
 const bindClickHandlers = () => { // index click handler
   $('.all_parties').on('click', e => {
     e.preventDefault()
+    history.pushState(null, null, "costume_parties")
     fetch('/costume_parties.json')
       .then(res => res.json())
       .then(parties => {
@@ -28,7 +29,7 @@ function CostumeParty(party) { // constructor function
 
 CostumeParty.prototype.formatIndex = function() { // index prototype function
   let partyHTML = `
-    <h4>${this.name}</h4>
+    <h4><a href="/costume_parties/${this.id}">${this.name}</a></h4><br>
     <p>${this.time} p.m.</p>
     <p>${this.date}</p>
     <p>Host: ${this.user.create_username}</p>
