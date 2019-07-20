@@ -10,6 +10,10 @@ class CostumePartiesController < ApplicationController
   end
 
   def show
+    respond_to do |f|
+      f.html
+      f.json {render json: @party}
+    end
   end
 
   def new
