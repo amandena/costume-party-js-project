@@ -1,5 +1,5 @@
 <% @parties.each do |party| %>
-  <h4><%= link_to "#{party.name}", costume_party_path(party) %></h4><br>
+  <h4><%= link_to "#{party.name}", costume_party_path(party), class: "show_party" %></h4><br>
   <p><%= party.time %> p.m.</p>
   <p><%= party.date %></p>
   <p>Host: <%= party.user.create_username %></p>
