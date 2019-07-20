@@ -2,7 +2,7 @@ $(document).ready(function(){
   bindClickHandlers()
 })
 
-const bindClickHandlers = () => { // index click handler
+const bindClickHandlers = () => { // index & show click handler
   $('.all_parties').on('click', e => {
     e.preventDefault()
     history.pushState(null, null, "costume_parties")
@@ -17,6 +17,15 @@ const bindClickHandlers = () => { // index click handler
         })
       })
   })
+  $(document).on('click',".show_link", function(e) {
+    e.preventDefault()
+    let id = $(this).attr('data-id')
+    fetch(`/costume_parties/${id}.json`)
+    .then(res => res.json())
+    .then(party => {
+      console.log(party)
+    })
+  })
 }
 
 function CostumeParty(party) { // constructor function
@@ -29,7 +38,7 @@ function CostumeParty(party) { // constructor function
 
 CostumeParty.prototype.formatIndex = function() { // index prototype function
   let partyHTML = `
-    <h4><a href="/costume_parties/${this.id}">${this.name}</a></h4><br>
+    <h4><a href="/costume_parties/${this.id}" class="show_link" data-id="${this.id}">${this.name}</a></h4><br>
     <p>${this.time} p.m.</p>
     <p>${this.date}</p>
     <p>Host: ${this.user.create_username}</p>
