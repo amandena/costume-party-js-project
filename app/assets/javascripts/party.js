@@ -17,13 +17,16 @@ const bindClickHandlers = () => { // index & show click handler
         })
       })
   })
-  $(document).on('click',".show_link", function(e) {
+  $(document).on('click', ".show_link", function(e) {
     e.preventDefault()
+    $('.content').html('')
     let id = $(this).attr('data-id')
     fetch(`/costume_parties/${id}.json`)
     .then(res => res.json())
     .then(party => {
-      console.log(party)
+      let newParty = new CostumeParty(party)
+      let partyHTML = newParty.formatShow()
+      $('.content').append(partyHTML)
     })
   })
 }
@@ -45,3 +48,18 @@ CostumeParty.prototype.formatIndex = function() { // index prototype function
   `
   return partyHTML // ---> user is undefined on line 34?
 }
+
+CostumeParty.prototype.formatShow = function() { // show prototype function
+  let partyHTML = `
+    <h2>${this.name}</h2>
+    <p>${this.time} p.m.</p>
+    <p>${this.date}</p>
+    <p>Host: ${this.user.create_username}</p>
+
+    <p>${this.costumes ? `<h3>Costumes:</h3>` : ''}</p>
+  `
+  return partyHTML // ---> user is undefined on line 57? line 59 not working either
+}
+
+
+// -- ${song.featuring ? `(Featuring ${song.featuring})` : ''}
