@@ -37,6 +37,7 @@ function CostumeParty(party) { // constructor function
   this.date = party.date
   this.time = party.time
   this.user = party.user
+  this.costumes = party.costumes
 }
 
 CostumeParty.prototype.formatIndex = function() { // index prototype function
@@ -62,10 +63,15 @@ CostumeParty.prototype.formatShow = function() { // show prototype function
     <p>${this.date}</p>
     <p>Host: ${this.username()}</p>
 
-    <p>${this['costumes'] ? `<h3>Costumes:</h3>` : ''}</p>
+    <p>${this.costumes ? `<h3>Costumes:</h3> ${this.costumes.forEach(costume => {costume['name']})}` : ''}</p>
+
+    <h3>Best Costume: </h3>
+
+    <p><a href="/costume_parties">VIEW PARTIES</a></p><br>
+    <p><a href="/costume_parties/${this.id}/costumes/new">CREATE A NEW COSTUME</a></p><br>
+
+    ${this.user == current_user ? `<p><a href="/costume_parties/${this.id}/edit">EDIT PARTY DETAILS</a></p><p><a href="/costume_parties/${this.id}">DELETE PARTY</a></p><br>`: ''}
+
   `
-  return partyHTML // ---> user is undefined on line 57? line 59 not working either
+  return partyHTML //--- need help with 66, 68, 73
 }
-
-
-// -- ${song.featuring ? `(Featuring ${song.featuring})` : ''}
