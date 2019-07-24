@@ -44,9 +44,15 @@ CostumeParty.prototype.formatIndex = function() { // index prototype function
     <h4><a href="/costume_parties/${this.id}" class="show_link" data-id="${this.id}">${this.name}</a></h4><br>
     <p>${this.time} p.m.</p>
     <p>${this.date}</p>
-    <p>Host: ${this.user.create_username}</p>
+    <p>Host: ${this.username()}</p>
   `
-  return partyHTML // ---> user is undefined on line 34?
+  return partyHTML
+}
+
+CostumeParty.prototype.username = function() { // creates username from user's email
+  let email = this.user['email']
+  let name = email.split('@', 1)
+  return name //--- have to figure out how to capitalize name
 }
 
 CostumeParty.prototype.formatShow = function() { // show prototype function
@@ -54,9 +60,9 @@ CostumeParty.prototype.formatShow = function() { // show prototype function
     <h2>${this.name}</h2>
     <p>${this.time} p.m.</p>
     <p>${this.date}</p>
-    <p>Host: ${this.user.create_username}</p>
+    <p>Host: ${this.username()}</p>
 
-    <p>${this.costumes ? `<h3>Costumes:</h3>` : ''}</p>
+    <p>${this['costumes'] ? `<h3>Costumes:</h3>` : ''}</p>
   `
   return partyHTML // ---> user is undefined on line 57? line 59 not working either
 }
