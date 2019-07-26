@@ -19,8 +19,9 @@ const bindClickHandlers = () => { // index & show click handler
   })
   $(document).on('click', ".show_link", function(e) {
     e.preventDefault()
-    $('.content').html('')
     let id = $(this).attr('data-id')
+    history.pushState(null, null, `costume_parties/${id}`)
+    $('.content').html('')
     fetch(`/costume_parties/${id}.json`)
     .then(res => res.json())
     .then(party => {
@@ -70,8 +71,12 @@ CostumeParty.prototype.formatShow = function() { // show prototype function
     <p><a href="/costume_parties">VIEW PARTIES</a></p><br>
     <p><a href="/costume_parties/${this.id}/costumes/new">CREATE A NEW COSTUME</a></p><br>
 
-    ${this.user == current_user ? `<p><a href="/costume_parties/${this.id}/edit">EDIT PARTY DETAILS</a></p><p><a href="/costume_parties/${this.id}">DELETE PARTY</a></p><br>`: ''}
+    ${this.user == currentUser() ? `<p><a href="/costume_parties/${this.id}/edit">EDIT PARTY DETAILS</a></p><p><a href="/costume_parties/${this.id}">DELETE PARTY</a></p><br>`: ''}
 
   `
   return partyHTML //--- need help with 66, 68, 73
+}
+
+const currentUser = () => {
+
 }
