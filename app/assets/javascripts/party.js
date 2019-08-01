@@ -30,6 +30,10 @@ const bindClickHandlers = () => { // index & show click handler
       $('.content').append(partyHTML)
     })
   })
+  $('.new-form').on('submit', function(e) {
+    e.preventDefault()
+    console.log($(this).serialize())
+  })
 }
 
 function CostumeParty(party) { // constructor function
