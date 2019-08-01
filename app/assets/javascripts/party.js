@@ -30,9 +30,17 @@ const bindClickHandlers = () => { // index & show click handler
       $('.content').append(partyHTML)
     })
   })
-  $('.new-form').on('submit', function(e) {
+  $('#new_costume_party').on('submit', function(e) {
     e.preventDefault()
-    console.log($(this).serialize())
+    const values = $(this).serialize()
+    $.post('/costume_parties', values).done(function(data) {
+      let id = $(this).attr('data-id')
+      history.pushState(null, null, `${id}`)
+      $('.content').html('')
+      const newParty = new CostumeParty(data)
+      const htmlToAdd = newParty.formatShow()
+      $('.content').html(htmlToAdd)
+    })
   })
 }
 

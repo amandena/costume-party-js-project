@@ -24,7 +24,8 @@ class CostumePartiesController < ApplicationController
     @party = CostumeParty.new(costume_party_params)
     @party.user_id = current_user.id
     if @party.save
-      redirect_to @party
+      #redirect_to @party
+      render json: @party
     else
       render 'new'
     end
