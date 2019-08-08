@@ -2,7 +2,7 @@ $(document).ready(function(){
   bindClickHandlers()
 })
 
-const bindClickHandlers = () => { // index & show click handler
+const bindClickHandlers = () => { // index, show, & form click handlers
   $('.all_parties').on('click', e => {
     e.preventDefault()
     history.pushState(null, null, "costume_parties")
@@ -34,8 +34,7 @@ const bindClickHandlers = () => { // index & show click handler
     e.preventDefault()
     const values = $(this).serialize()
     $.post('/costume_parties', values).done(function(data) {
-      let id = $(this).attr('data-id')
-      history.pushState(null, null, `${id}`)
+      history.pushState(null, null, `${data['id']}`) // showing as undefined
       $('.content').html('')
       const newParty = new CostumeParty(data)
       const htmlToAdd = newParty.formatShow()
@@ -76,7 +75,7 @@ CostumeParty.prototype.formatShow = function() { // show prototype function
     <p>${this.date}</p>
     <p>Host: ${this.username()}</p>
 
-    <p>${this.costumes ? `<h3>Costumes:</h3> ${this.costumes.forEach(costume => {costume['name']})}` : ''}</p>
+    <p>${this.costumes ? `<h3>Costumes:</h3>${this.costumes.forEach(costume => {costume.name})}` : ''}</p>
 
     <h3>Best Costume: </h3>
 
