@@ -75,17 +75,16 @@ CostumeParty.prototype.formatShow = function() { // show prototype function
     <p>${this.date}</p>
     <p>Host: ${this.username()}</p>
 
-    <p>${this.costumes ? `<h3>Costumes:</h3>${this.costumes.forEach(costume => {costume.name})}` : ''}</p>
+    ${this.costumes ? `<h3>Costumes:</h3>${this.costumes.map(costume => {return costume.name})}` : ''}
 
     <h3>Best Costume: </h3>
 
     <p><a href="/costume_parties">VIEW PARTIES</a></p><br>
     <p><a href="/costume_parties/${this.id}/costumes/new">CREATE A NEW COSTUME</a></p><br>
 
-    ${this.user == currentUser() ? `<p><a href="/costume_parties/${this.id}/edit">EDIT PARTY DETAILS</a></p><p><a href="/costume_parties/${this.id}">DELETE PARTY</a></p><br>`: ''}
-
+    ${this.user == currentUser() ? `<p><a href="/costume_parties/${this.id}/edit">EDIT PARTY DETAILS</a></p><p><a href="/costume_parties/${this.id}">DELETE PARTY</a></p><br>` : ''}
   `
-  return partyHTML //--- need help with 66, 68, 73
+  return partyHTML //--- need help with 78, 80, 85
 }
 
 const currentUser = () => {
