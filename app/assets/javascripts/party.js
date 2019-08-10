@@ -58,6 +58,8 @@ CostumeParty.prototype.formatIndex = function() { // index prototype function
     <p>${this.time} p.m.</p>
     <p>${this.date}</p>
     <p>Host: ${this.username()}</p>
+
+    <p><a href="/costume_parties/new">CREATE A NEW PARTY</a></p>
   `
   return partyHTML
 }
