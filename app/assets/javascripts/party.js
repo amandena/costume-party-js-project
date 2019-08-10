@@ -77,14 +77,8 @@ CostumeParty.prototype.formatShow = function() { // show prototype function
 
     ${this.costumes ? `<h3>Costumes:</h3>${this.costumes.map(costume => {return costume.name})}` : ''}
 
-    <h3>Best Costume: </h3>${this.bestCostume()}
-
     <p><a href="/costume_parties">VIEW PARTIES</a></p><br>
     <p><a href="/costume_parties/${this.id}/costumes/new">CREATE A NEW COSTUME</a></p><br>
   `
   return partyHTML //--- need help with 78, 80, 85
-}
-
-const bestCostume = () => {
-
 }
