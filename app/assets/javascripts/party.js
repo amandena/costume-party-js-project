@@ -34,7 +34,7 @@ const bindClickHandlers = () => { // index, show, & form click handlers
     e.preventDefault()
     const values = $(this).serialize()
     $.post('/costume_parties', values).done(function(data) {
-      history.pushState(null, null, `${data['id']}`) // showing as undefined
+      history.pushState(null, null, `${data['id']}`)
       $('.content').html('')
       const newParty = new CostumeParty(data)
       const htmlToAdd = newParty.formatShow()
@@ -67,7 +67,7 @@ CostumeParty.prototype.formatIndex = function() { // index prototype function
 CostumeParty.prototype.username = function() { // creates username from user's email
   let email = this.user['email']
   let name = email.split('@', 1)
-  return name //--- have to figure out how to capitalize name
+  return name
 }
 
 CostumeParty.prototype.formatShow = function() { // show prototype function
@@ -82,5 +82,5 @@ CostumeParty.prototype.formatShow = function() { // show prototype function
     <p><a href="/costume_parties">VIEW PARTIES</a></p><br>
     <p><a href="/costume_parties/${this.id}/costumes/new">CREATE A NEW COSTUME</a></p><br>
   `
-  return partyHTML //--- need help with 78, 80, 85
+  return partyHTML
 }
