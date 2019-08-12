@@ -58,8 +58,6 @@ CostumeParty.prototype.formatIndex = function() { // index prototype function
     <p>${this.time} p.m.</p>
     <p>${this.date}</p>
     <p>Host: ${this.username()}</p>
-
-    <p><a href="/costume_parties/new">CREATE A NEW PARTY</a></p>
   `
   return partyHTML
 }
@@ -80,6 +78,7 @@ CostumeParty.prototype.formatShow = function() { // show prototype function
     ${this.costumes != [] ? `<h3>Costumes:</h3>${this.costumes.map(costume => {return costume.name})}` : ''}
 
     <p><a href="/costume_parties">VIEW PARTIES</a></p><br>
+    <p><a href="/costume_parties/new">CREATE A NEW PARTY</a></p><br>
     <p><a href="/costume_parties/${this.id}/costumes/new">CREATE A NEW COSTUME</a></p><br>
   `
   return partyHTML
