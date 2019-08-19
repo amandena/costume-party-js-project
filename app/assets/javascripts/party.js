@@ -75,7 +75,7 @@ CostumeParty.prototype.formatShow = function() { // show prototype function
     <p>${this.date}</p>
     <p>Host: ${this.username()}</p>
 
-    ${this.costumes != [] ? `<h3>Costumes:</h3>${this.costumes.map(costume => {return costume.name})}` : ''}
+    ${this.costumes != [] ? `<h3>Costumes:</h3>${this.costumes.map(costume => {return costume.name}).join(', ')}` : ''}
 
     <p><a href="/costume_parties">VIEW PARTIES</a></p><br>
     <p><a href="/costume_parties/new">CREATE A NEW PARTY</a></p><br>
