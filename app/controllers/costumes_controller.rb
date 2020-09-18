@@ -15,7 +15,7 @@ class CostumesController < ApplicationController
 
   def new
     if params[:costume_party_id]
-      @party = CostumeParty.find(params[:costume_party_id])
+      @party = CostumeParty.find(costume_params[:costume_party_id])
       if @party.nil?
         redirect_to costume_parties_path
       else
@@ -28,7 +28,7 @@ class CostumesController < ApplicationController
 
   def create
     #binding.pry
-    @party = CostumeParty.find(params[:costume_party_id])
+    @party = CostumeParty.find(costume_params[:costume_party_id])
     @costume = @party.costumes.new(costume_params)
     @costume.user = current_user
     if @costume.save
